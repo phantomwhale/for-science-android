@@ -70,7 +70,7 @@ function winScreen:loadGraphics(cam, debug)
     frame:setFillColor(1, 1, 1, 0.2)
     frame:setStrokeColor(1, 1, 1)
   end
-  
+
   local titleText = display.newText({
     parent = screenGroup,
     x = display.contentCenterX,
@@ -102,15 +102,15 @@ end
 
 function winScreen:preOnEnter()
   _G.gameWasPaused = false
-  
+
   if _G.settingsData.gameOverSoundsOn then
-    musicMan:playSoundEffect("VictoryFanfare.mp3", _G.settingsData.gameOverVolume/100)
+    musicMan:playSoundEffect("VictoryFanfare.mp3", _G.settingsData.gameOverVolume / 100)
     if _G.settingsData.musicOn then
       musicMan:stopMusic()
       local lengthOfFanfare = 9500
-	    timer.performWithDelay(lengthOfFanfare, function() musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume/100) end, 1)
+      timer.performWithDelay(lengthOfFanfare, function() musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume / 100) end, 1)
     end
-    self.winClips = self.playRandomClip(self.winClips, _G.settingsData.gameOverVolume/100)
+    self.winClips = self.playRandomClip(self.winClips, _G.settingsData.gameOverVolume / 100)
   end
 
   local winType = 1
@@ -133,15 +133,16 @@ function winScreen:makeButton(text, callback, xPos)
     fontSize = 64,
     label = text,
     font = "fonts/LemonMilk.otf",
-    labelColor = { default={1,1,1}, over={1,1,1} },
+    labelColor = { default = { 1, 1, 1 }, over = { 1, 1, 1 } },
     defaultFile = "images/paperButtonUp.png",
     overFile = "images/paperButtonDown.png",
     onRelease = callback
   })
   btn.x = xPos
   btn.y = display.contentCenterY * 1.4
-  
+
   return btn
 end
 
 return winScreen
+

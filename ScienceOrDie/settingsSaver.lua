@@ -36,3 +36,4 @@ function settingsSaver:load()
 end
 
 return settingsSaver
+

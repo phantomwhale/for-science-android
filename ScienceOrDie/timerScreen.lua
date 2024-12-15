@@ -12,8 +12,8 @@ local eventTitles = {
   "No! Nonono!",
   "Nooooooooo!",
   "What now?!",
- -- "Everyone start cursing",
- -- "So there's this...issue...",
+  -- "Everyone start cursing",
+  -- "So there's this...issue...",
   "Doesn't that figure?",
   "Complication alert!",
   "Crud crud crud crud",
@@ -76,19 +76,19 @@ function timerScreen:loadGraphics(cam, debug)
         needsToConfirm = false
         self.winButton.maintext.text = "REALLY?"
         self.winButton.subtext.text = "You did it?"
-        self.winButton.maintext:setFillColor(232/255, 239/255, 127/255)
-        self.winButton.subtext:setFillColor(232/255, 239/255, 127/255)
+        self.winButton.maintext:setFillColor(232 / 255, 239 / 255, 127 / 255)
+        self.winButton.subtext:setFillColor(232 / 255, 239 / 255, 127 / 255)
         timer.performWithDelay(4000, resetWinButton, 1)
         self.clockWidget:pause()
       else
         gameWon = true
-        self.goToScreen("winScreen") 
+        self.goToScreen("winScreen")
       end
     end
   end
   self.winButton = self:makeButton("Mission", "Accomplished", onTapWin, display.contentCenterY * 0.6)
   screenGroup:insert(self.winButton)
-  
+
   -- Pause Button -------------------------------------
   local widget = require("widget")
   local btn = widget.newButton({
@@ -101,7 +101,7 @@ function timerScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX - (display.viewableContentWidth / 2) + 200
   btn.y = display.contentCenterY + (display.viewableContentHeight / 2) - 200
   screenGroup:insert(btn)
-  ----------------------------------------------------  
+  ----------------------------------------------------
 
   self.generalClips = self.buildClipList("voice/doom-general-", 12)
   self.earlyClips = self.buildClipList("voice/doom-early-", 5)
@@ -122,16 +122,16 @@ function timerScreen:preOnEnter()
   end
 
   self.clockWidget.displayGroup.y = display.contentCenterY * 0.6 + 450
-  
+
   _G.musicFile = "Beginning"
   if _G.settingsData.musicOn then
-    musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume/100)
+    musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume / 100)
   end
 end
 
 function timerScreen:onEnter()
   self.clockWidget:unpause()
-  
+
   if _G.settingsData.flashingEventsOn then
     timer.resume(self.flasher)
   else
@@ -144,7 +144,7 @@ function timerScreen:onExit()
   self:hideEvent(false)
   _G.musicFile = "LongRoad"
   if _G.settingsData.musicOn then
-    musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume/100)
+    musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume / 100)
   end
   self.clockWidget:pause()
 end
@@ -153,20 +153,20 @@ function timerScreen:showEvent()
   local transitionTime = 400
   local popup = self.eventPopup
   popup.alpha = 1
-  transition.to(popup, { time=transitionTime, y=display.contentCenterY-250 })
+  transition.to(popup, { time = transitionTime, y = display.contentCenterY - 250 })
   self.popupShowing = true
 
   self.eventTitle.text = eventTitles[math.random(#eventTitles)]
-  
-  transition.to(self.clockWidget.displayGroup, { 
-    time=transitionTime, 
-    y=(display.contentCenterY+350), 
-    xScale=0.45,
-    yScale=0.45
+
+  transition.to(self.clockWidget.displayGroup, {
+    time = transitionTime,
+    y = (display.contentCenterY + 350),
+    xScale = 0.45,
+    yScale = 0.45
   })
 
   if _G.settingsData.eventSoundsOn then
-    musicMan:playSoundEffect("EventSound.mp3", _G.settingsData.eventVolume/100)
+    musicMan:playSoundEffect("EventSound.mp3", _G.settingsData.eventVolume / 100)
   end
 
   _G.isMidEvent = true
@@ -176,13 +176,13 @@ end
 function timerScreen:hideEvent(playSound)
   local transitionTime = 400
   local popup = self.eventPopup
-	transition.to(popup, { time=transitionTime, y=-display.contentCenterY })
+  transition.to(popup, { time = transitionTime, y = -display.contentCenterY })
   timer.performWithDelay(transitionTime, function() popup.alpha = 0 end, 1)
-  
-  transition.to(self.clockWidget.displayGroup, { time=transitionTime, y=display.contentCenterY * 0.6 + 450, xScale=1, yScale=1 })
+
+  transition.to(self.clockWidget.displayGroup, { time = transitionTime, y = display.contentCenterY * 0.6 + 450, xScale = 1, yScale = 1 })
 
   if playSound and _G.settingsData.eventSoundsOn then
-    self.eventClips = self.playRandomClip(self.eventClips, _G.settingsData.eventVolume/100)
+    self.eventClips = self.playRandomClip(self.eventClips, _G.settingsData.eventVolume / 100)
   end
 
   -- Always push a little bit after the event
@@ -198,15 +198,15 @@ function timerScreen:DOOM()
   if _G.settingsData.doomQuoteSoundsOn then
     if math.random(1, 5) >= 3 then
       -- Use a general sound
-      self.generalClips = self.playRandomClip(self.generalClips, _G.settingsData.doomQuoteVolume/100)
+      self.generalClips = self.playRandomClip(self.generalClips, _G.settingsData.doomQuoteVolume / 100)
     else
       -- Use a time specific sound
       if _G.percentTimeRemaining >= 0.66 then
-        self.earlyClips = self.playRandomClip(self.earlyClips, _G.settingsData.eventVolume/100)
+        self.earlyClips = self.playRandomClip(self.earlyClips, _G.settingsData.eventVolume / 100)
       elseif _G.percentTimeRemaining >= 0.33 then
-        self.midClips = self.playRandomClip(self.midClips, _G.settingsData.eventVolume/100)
+        self.midClips = self.playRandomClip(self.midClips, _G.settingsData.eventVolume / 100)
       else
-        self.lateClips = self.playRandomClip(self.lateClips, _G.settingsData.eventVolume/100)
+        self.lateClips = self.playRandomClip(self.lateClips, _G.settingsData.eventVolume / 100)
       end
     end
   end
@@ -233,7 +233,7 @@ function timerScreen:makeButton(text, textToo, callback, yPos)
     font = "fonts/LemonMilk.otf",
     fontSize = 72
   })
-  maintext.x = btnWidth/2
+  maintext.x = btnWidth / 2
   maintext.y = btnHeight * 0.4
   btn.maintext = maintext
 
@@ -243,7 +243,7 @@ function timerScreen:makeButton(text, textToo, callback, yPos)
     font = "fonts/LemonMilk.otf",
     fontSize = 72
   })
-  subtext.x = btnWidth/2
+  subtext.x = btnWidth / 2
   subtext.y = btnHeight * 0.67
   btn.subtext = subtext
 
@@ -255,10 +255,10 @@ function timerScreen:buildPopup()
   local popupBg = display.newImage(popup, "images/popup.png")
   popupBg.y = -100
   self.popupBg = popupBg
-  
-  self.flasher = timer.performWithDelay(250, function() 
+
+  self.flasher = timer.performWithDelay(250, function()
     if self.filterOn == false then
-      popupBg.fill.effect = "filter.invert" 
+      popupBg.fill.effect = "filter.invert"
     else
       popupBg.fill.effect = ""
     end
@@ -294,7 +294,7 @@ function timerScreen:buildPopup()
     fontSize = 56,
     label = "Tap when resolved",
     font = "fonts/LemonMilk.otf",
-    labelColor = { default={1,1,1}, over={1,1,1} },
+    labelColor = { default = { 1, 1, 1 }, over = { 1, 1, 1 } },
     defaultFile = "images/paperButtonUp.png",
     overFile = "images/paperButtonDown.png",
     onRelease = function() self:hideEvent(true) end
@@ -313,7 +313,7 @@ function timerScreen:getNextEventTime(firstEvent)
   local lowEnd
   local highEnd
   if _G.settingsData.difficulty == 0 then
-    return 60 * 60 * 24 * 365                 -- No event difficulty, set the next to a year from now
+    return 60 * 60 * 24 * 365 -- No event difficulty, set the next to a year from now
   elseif _G.settingsData.difficulty == 1 then
     lowEnd = 4
     highEnd = 5
@@ -331,7 +331,7 @@ function timerScreen:getNextEventTime(firstEvent)
   if firstEvent then
     lowEnd = 1
   end
-  
+
   return math.random(lowEnd * 60, highEnd * 60)
 end
 
@@ -347,3 +347,4 @@ function timerScreen:getNextDoomTime(firstDoom)
 end
 
 return timerScreen
+

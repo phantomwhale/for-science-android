@@ -32,7 +32,7 @@ function titleScreen:loadGraphics(cam, debug)
   titleImg.x = display.contentCenterX
   titleImg.y = display.contentCenterY - 150
   titleImg:scale(1.75, 1.75)
-  
+
   local widget = require("widget")
   local btn = widget.newButton({
     width = 900,
@@ -40,7 +40,7 @@ function titleScreen:loadGraphics(cam, debug)
     fontSize = 96,
     label = "NEW GAME",
     font = "fonts/LemonMilk.otf",
-    labelColor = { default={1,1,1}, over={1,1,1} },
+    labelColor = { default = { 1, 1, 1 }, over = { 1, 1, 1 } },
     defaultFile = "images/paperButtonUp.png",
     overFile = "images/paperButtonDown.png",
     onRelease = function() self.goToScreen("modeSelectScreen") end
@@ -60,7 +60,8 @@ function titleScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX + (display.viewableContentWidth / 2) - 200
   btn.y = display.contentCenterY + (display.viewableContentHeight / 2) - 150
   screenGroup:insert(btn)
-  ----------------------------------------------------  
+  ----------------------------------------------------
 end
 
 return titleScreen
+

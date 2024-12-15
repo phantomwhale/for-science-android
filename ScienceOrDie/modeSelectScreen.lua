@@ -47,7 +47,7 @@ function modeSelectScreen:loadGraphics(cam, debug)
 
   screenGroup:insert(self:makeButton("Standard Mode", "No Events", function() self.goToScreen("timerScreen") end, display.contentHeight * 0.55))
   screenGroup:insert(self:makeButton("Chaos Mode", "Has Events", function() self.goToScreen("chaosSelectScreen") end, display.contentCenterY * 1.45))
-  
+
   -- Back Button -------------------------------------
   local widget = require("widget")
   local btn = widget.newButton({
@@ -60,7 +60,7 @@ function modeSelectScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX - (display.viewableContentWidth / 2) + 200
   btn.y = display.contentCenterY + (display.viewableContentHeight / 2) - 150
   screenGroup:insert(btn)
-  ----------------------------------------------------  
+  ----------------------------------------------------
 end
 
 function modeSelectScreen:onEnter()
@@ -69,7 +69,7 @@ end
 
 function modeSelectScreen:makeTimeButton(text, state, callback, xPos)
   local widget = require("widget")
-    
+
   local timeBtnSheet = graphics.newImageSheet("images/timeButtonSheet.png", {
     width = 203,
     height = 202,
@@ -96,8 +96,8 @@ function modeSelectScreen:makeTimeButton(text, state, callback, xPos)
     font = "fonts/LemonMilk.otf",
     fontSize = 76
   })
-  btnText.x = 203/2
-  btnText.y = 202/2
+  btnText.x = 203 / 2
+  btnText.y = 202 / 2
   btnText:setFillColor(0)
 
   return btn
@@ -124,7 +124,7 @@ function modeSelectScreen:makeButton(text, textToo, callback, yPos)
     font = "fonts/LemonMilk.otf",
     fontSize = 78
   })
-  maintext.x = btnWidth/2
+  maintext.x = btnWidth / 2
   maintext.y = btnHeight * 0.4
 
   local subtext = display.newText({
@@ -133,7 +133,7 @@ function modeSelectScreen:makeButton(text, textToo, callback, yPos)
     font = "fonts/LemonMilk.otf",
     fontSize = 64
   })
-  subtext.x = btnWidth/2
+  subtext.x = btnWidth / 2
   subtext.y = btnHeight * 0.65
 
   return btn

@@ -65,7 +65,7 @@ function settingsScreen:loadGraphics(cam, debug)
     frame:setFillColor(1, 1, 1, 0.2)
     frame:setStrokeColor(1, 1, 1)
   end
-  
+
   local audioText = display.newText({
     parent = screenGroup,
     x = display.contentCenterX - display.viewableContentWidth * 0.2,
@@ -84,44 +84,44 @@ function settingsScreen:loadGraphics(cam, debug)
     fontSize = 98
   })
   videoText:setFillColor(1)
-  
+
   screenGroup:insert(self:makeSlider("musicVolume", "Music Volume",
-    display.contentCenterX + display.viewableContentWidth * 0.25, 
+    display.contentCenterX + display.viewableContentWidth * 0.25,
     display.contentCenterY - display.viewableContentHeight * 0.35))
-  screenGroup:insert(self:makeSlider("warningVolume", "Countdown Volume", 
-    display.contentCenterX - display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSlider("warningVolume", "Countdown Volume",
+    display.contentCenterX - display.viewableContentWidth * 0.25,
     display.contentCenterY - display.viewableContentHeight * 0.14))
-  screenGroup:insert(self:makeSlider("eventVolume", "Events Volume", 
-    display.contentCenterX - display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSlider("eventVolume", "Events Volume",
+    display.contentCenterX - display.viewableContentWidth * 0.25,
     display.contentCenterY + display.viewableContentHeight * 0.07))
-  screenGroup:insert(self:makeSlider("gameOverVolume", "Game Over Volume", 
-    display.contentCenterX + display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSlider("gameOverVolume", "Game Over Volume",
+    display.contentCenterX + display.viewableContentWidth * 0.25,
     display.contentCenterY + display.viewableContentHeight * 0.07))
-  screenGroup:insert(self:makeSlider("doomQuoteVolume", "Lab Quotes Volume", 
-    display.contentCenterX + display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSlider("doomQuoteVolume", "Lab Quotes Volume",
+    display.contentCenterX + display.viewableContentWidth * 0.25,
     display.contentCenterY - display.viewableContentHeight * 0.14))
---[[
-  screenGroup:insert(self:makeSetting("musicOn", "Soundtrack", 
-    display.contentCenterX + display.viewableContentWidth * 0.25, 
+  --[[
+  screenGroup:insert(self:makeSetting("musicOn", "Soundtrack",
+    display.contentCenterX + display.viewableContentWidth * 0.25,
     display.contentCenterY - display.viewableContentHeight * 0.35))
-  screenGroup:insert(self:makeSetting("warningSoundsOn", "Countdown SFX", 
-    display.contentCenterX - display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSetting("warningSoundsOn", "Countdown SFX",
+    display.contentCenterX - display.viewableContentWidth * 0.25,
     display.contentCenterY - display.viewableContentHeight * 0.15))
-  screenGroup:insert(self:makeSetting("eventSoundsOn", "Events SFX", 
-    display.contentCenterX - display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSetting("eventSoundsOn", "Events SFX",
+    display.contentCenterX - display.viewableContentWidth * 0.25,
     display.contentCenterY + display.viewableContentHeight * 0.05))
-  screenGroup:insert(self:makeSetting("gameOverSoundsOn", "Game Over SFX", 
-    display.contentCenterX + display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSetting("gameOverSoundsOn", "Game Over SFX",
+    display.contentCenterX + display.viewableContentWidth * 0.25,
     display.contentCenterY + display.viewableContentHeight * 0.05))
-  screenGroup:insert(self:makeSetting("doomQuoteSoundsOn", "Lab Quotes SFX", 
-    display.contentCenterX + display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSetting("doomQuoteSoundsOn", "Lab Quotes SFX",
+    display.contentCenterX + display.viewableContentWidth * 0.25,
     display.contentCenterY - display.viewableContentHeight * 0.15))
-    
+
     ]]
-  screenGroup:insert(self:makeSetting("flashingEventsOn", "Flash on event", 
-    display.contentCenterX + display.viewableContentWidth * 0.25, 
+  screenGroup:insert(self:makeSetting("flashingEventsOn", "Flash on event",
+    display.contentCenterX + display.viewableContentWidth * 0.25,
     display.contentCenterY + display.viewableContentHeight * 0.35))
-  
+
   -- Back Button -------------------------------------
   local widget = require("widget")
   local btn = widget.newButton({
@@ -134,7 +134,7 @@ function settingsScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX - (display.viewableContentWidth / 2) + 100
   btn.y = display.contentCenterY + (display.viewableContentHeight / 2) - 100
   screenGroup:insert(btn)
-  ----------------------------------------------------  
+  ----------------------------------------------------
 end
 
 function settingsScreen:makeSlider(dataName, displayName, xPos, yPos)
@@ -150,9 +150,9 @@ function settingsScreen:makeSlider(dataName, displayName, xPos, yPos)
     settingsSaver:save()
 
     if dataName == "musicVolume" then
-      musicMan:setMusicVolume(event.value/100)
+      musicMan:setMusicVolume(event.value / 100)
     elseif event.phase == "ended" and dataName:sub(-6) == "Volume" then
-      musicMan:playSoundEffect("bloop.mp3", event.value/100)
+      musicMan:playSoundEffect("bloop.mp3", event.value / 100)
     end
   end
 
@@ -177,14 +177,14 @@ function settingsScreen:makeSlider(dataName, displayName, xPos, yPos)
     }
   )
   setting:insert(slider)
-  
+
   local displayText = display.newText({
     parent = screenGroup,
     text = displayName,
     font = "fonts/Alien-Encounters-Solid-Regular.ttf",
     fontSize = 78,
   })
-  displayText.x = displayText.width/2
+  displayText.x = displayText.width / 2
   displayText.y = -50
   displayText.anchorX = 1
   displayText:setFillColor(0.7)
@@ -216,13 +216,13 @@ function settingsScreen:makeSetting(dataName, displayName, xPos, yPos)
     height = 200,
     initialSwitchState = _G.settingsData[dataName],
     style = "checkbox",
-    onPress = function(event) 
+    onPress = function(event)
       _G.settingsData[dataName] = event.target.isOn
       settingsSaver:save()
 
       if dataName == "musicOn" then
         if event.target.isOn then
-          musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume/100)
+          musicMan:playMusic(_G.musicFile, _G.settingsData.musicVolume / 100)
         else
           musicMan:stopMusic()
         end
@@ -250,3 +250,4 @@ function settingsScreen:makeSetting(dataName, displayName, xPos, yPos)
 end
 
 return settingsScreen
+

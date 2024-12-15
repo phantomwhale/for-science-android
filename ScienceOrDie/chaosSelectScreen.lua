@@ -32,7 +32,7 @@ function chaosSelectScreen:loadGraphics(cam, debug)
   screenGroup:insert(self:makeButton("unstable", "1 event every 3-4 minutes", function() self:advance(2) end, display.contentWidth * 0.27, display.contentHeight * 0.6))
   screenGroup:insert(self:makeButton("chaotic", "1 event every 2-3 minutes", function() self:advance(3) end, display.contentWidth * 0.73, display.contentHeight * 0.4))
   screenGroup:insert(self:makeButton("crisis", "1 event every 1-2 minutes", function() self:advance(4) end, display.contentWidth * 0.73, display.contentHeight * 0.6))
-  
+
   -- Back Button -------------------------------------
   local widget = require("widget")
   local btn = widget.newButton({
@@ -45,7 +45,7 @@ function chaosSelectScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX - (display.viewableContentWidth / 2) + 200
   btn.y = display.contentCenterY + (display.viewableContentHeight / 2) - 150
   screenGroup:insert(btn)
-  ----------------------------------------------------  
+  ----------------------------------------------------
 end
 
 function chaosSelectScreen:advance(difficulty)
@@ -75,7 +75,7 @@ function chaosSelectScreen:makeButton(text, textToo, callback, xPos, yPos)
     font = "fonts/LemonMilk.otf",
     fontSize = 78
   })
-  maintext.x = btnWidth/2
+  maintext.x = btnWidth / 2
   maintext.y = btnHeight * 0.4
 
   local subtext = display.newText({
@@ -84,10 +84,11 @@ function chaosSelectScreen:makeButton(text, textToo, callback, xPos, yPos)
     font = "fonts/LemonMilk.otf",
     fontSize = 48
   })
-  subtext.x = btnWidth/2
+  subtext.x = btnWidth / 2
   subtext.y = btnHeight * 0.65
-  
+
   return btn
 end
 
 return chaosSelectScreen
+

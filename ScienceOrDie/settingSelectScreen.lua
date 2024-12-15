@@ -30,7 +30,7 @@ function settingSelectScreen:loadGraphics(cam, debug)
 
   screenGroup:insert(self:makeButton("Begin the game", "using standard settings", function() self.goToScreen("timerScreen") end, display.contentCenterY * 0.5))
   screenGroup:insert(self:makeButton("Custom settings", "(Audio/video)", function() self.goToScreen("settingsScreen") end, display.contentCenterY * 1.5))
-  
+
   -- Back Button -------------------------------------
   local widget = require("widget")
   local btn = widget.newButton({
@@ -43,7 +43,7 @@ function settingSelectScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX - (display.viewableContentWidth / 2) + 100
   btn.y = display.contentCenterY + (display.viewableContentHeight / 2) - 100
   screenGroup:insert(btn)
-  ----------------------------------------------------  
+  ----------------------------------------------------
 end
 
 function settingSelectScreen:makeButton(text, textToo, callback, yPos)
@@ -54,15 +54,16 @@ function settingSelectScreen:makeButton(text, textToo, callback, yPos)
     fontSize = 64,
     label = text,
     font = "fonts/LemonMilk.otf",
-    labelColor = { default={1,1,1}, over={1,1,1} },
+    labelColor = { default = { 1, 1, 1 }, over = { 1, 1, 1 } },
     defaultFile = "images/paperButtonUp.png",
     overFile = "images/paperButtonDown.png",
     onRelease = callback
   })
   btn.x = display.contentCenterX
   btn.y = yPos
-  
+
   return btn
 end
 
 return settingSelectScreen
+

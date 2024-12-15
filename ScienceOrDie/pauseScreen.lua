@@ -31,14 +31,14 @@ function pauseScreen:loadGraphics(cam, debug)
   end
 
   local widget = require("widget")
-  
+
   local btn = widget.newButton({
     width = 900,
     height = 275,
     fontSize = 96,
     label = "RESUME",
     font = "fonts/LemonMilk.otf",
-    labelColor = { default={1,1,1}, over={1,1,1} },
+    labelColor = { default = { 1, 1, 1 }, over = { 1, 1, 1 } },
     defaultFile = "images/paperButtonUp.png",
     overFile = "images/paperButtonDown.png",
     onRelease = function()
@@ -55,7 +55,7 @@ function pauseScreen:loadGraphics(cam, debug)
     fontSize = 96,
     label = "END GAME",
     font = "fonts/LemonMilk.otf",
-    labelColor = { default={1,1,1}, over={1,1,1} },
+    labelColor = { default = { 1, 1, 1 }, over = { 1, 1, 1 } },
     defaultFile = "images/paperButtonUp.png",
     overFile = "images/paperButtonDown.png",
     onRelease = function()
@@ -67,7 +67,7 @@ function pauseScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX
   btn.y = display.contentCenterY * 1.35
   screenGroup:insert(btn)
-  
+
   -- Settings Button -------------------------------------
   local btn = widget.newButton({
     width = 200,
@@ -78,7 +78,8 @@ function pauseScreen:loadGraphics(cam, debug)
   btn.x = display.contentCenterX + (display.viewableContentWidth / 2) - 200
   btn.y = display.contentCenterY + (display.viewableContentHeight / 2) - 150
   screenGroup:insert(btn)
-  ----------------------------------------------------  
+  ----------------------------------------------------
 end
 
 return pauseScreen
+
