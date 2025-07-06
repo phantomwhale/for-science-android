@@ -28,9 +28,9 @@ function chaosSelectScreen:loadGraphics(cam, debug)
     frame:setStrokeColor(1, 0, 1)
   end
 
-  screenGroup:insert(self:makeButton("stable", "1 event every 4-5 minutes", function() self:advance(1) end, display.contentWidth * 0.27, display.contentHeight * 0.4))
-  screenGroup:insert(self:makeButton("unstable", "1 event every 3-4 minutes", function() self:advance(2) end, display.contentWidth * 0.27, display.contentHeight * 0.6))
-  screenGroup:insert(self:makeButton("chaotic", "1 event every 2-3 minutes", function() self:advance(3) end, display.contentWidth * 0.73, display.contentHeight * 0.4))
+  screenGroup:insert(self:makeButton("stable", "1 event every 3-5 minutes", function() self:advance(1) end, display.contentWidth * 0.27, display.contentHeight * 0.4))
+  screenGroup:insert(self:makeButton("unstable", "1 event every 2-3 minutes", function() self:advance(2) end, display.contentWidth * 0.27, display.contentHeight * 0.6))
+  screenGroup:insert(self:makeButton("chaotic", "1 event every 1.5-2.5 minutes", function() self:advance(3) end, display.contentWidth * 0.73, display.contentHeight * 0.4))
   screenGroup:insert(self:makeButton("crisis", "1 event every 1-2 minutes", function() self:advance(4) end, display.contentWidth * 0.73, display.contentHeight * 0.6))
 
   -- Back Button -------------------------------------

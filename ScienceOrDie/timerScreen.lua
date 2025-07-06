@@ -315,24 +315,24 @@ function timerScreen:getNextEventTime(firstEvent)
   if _G.settingsData.difficulty == 0 then
     return 60 * 60 * 24 * 365 -- No event difficulty, set the next to a year from now
   elseif _G.settingsData.difficulty == 1 then
-    lowEnd = 4
-    highEnd = 5
+      lowEnd = 180 --in seconds (3-5 min)
+      highEnd = 300
   elseif _G.settingsData.difficulty == 2 then
-    lowEnd = 3
-    highEnd = 4
+      lowEnd = 120 --(2-3 min)
+      highEnd = 180
   elseif _G.settingsData.difficulty == 3 then
-    lowEnd = 2
-    highEnd = 3
+      lowEnd = 90 --(1.5-2.5 min)
+      highEnd = 150
   elseif _G.settingsData.difficulty == 4 then
-    lowEnd = 1.25
-    highEnd = 2
+      lowEnd = 60 --(1-2 min)
+      highEnd = 120
   end
 
   if firstEvent then
-    lowEnd = 1
+    lowEnd = 60
   end
 
-  return math.random(lowEnd * 60, highEnd * 60)
+  return math.random(lowEnd , highEnd )
 end
 
 function timerScreen:getNextDoomTime(firstDoom)
